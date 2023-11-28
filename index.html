@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Generator Version 0.1</title>
+
+    <!-- bootstrap css 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- base.css styles -->
+    <link rel="stylesheet" href="css/base.css">
+
+    <!-- object-styles.css styles -->
+    <link rel="stylesheet" href="css/object-styles.css">
+
+    <!-- Include Prism CSS -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" /> -->
+    <link href="./node_modules/prismjs/themes/prism.css" rel="stylesheet" />
+
+
+</head>
+
+<body>
+    <div id="root" class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- design pallete window -->
+                <h5 class="fs-1">Tools</h5>
+                <div class="design-tools-panel mb-4" style="max-height: 209px;" id="design-pallete-container">
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="fs-5">Database Config.</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="fs-5">Form Style.</p>
+                            <!-- select the form style -->
+                            <div class="input-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="formStyleOptions"
+                                        id="inlineRadiobtn" value="inline">
+                                    <label class="form-check-label" for="inlineRadiobtn">inline</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="formStyleOptions"
+                                        id="gridRadiobtn" value="grid">
+                                    <label class="form-check-label" for="gridRadiobtn">grid</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="fs-5">CSS Styling</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="fs-5">Elements</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <p class="fs-5">Reorder</p>
+                        </div>
+                        <div class="col-sm">
+                            <p class="fs-5">Reload</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- db table list -->
+                <div class="material-rounded-panel mb-4" style="max-height: 66vh;" id="dbtables-list-container">
+
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- review output window -->
+                <h5 class="fs-1">Preview</h5>
+                <div class="material-rounded-panel" id="preview-output-container">
+                    <!-- bootstrap tabs -->
+                    <ul class="nav nav-tabs sticky-top m-0 bg-white rounded-2" style="overflow: hidden;" id="myTab"
+                        role="tablist">
+                        <li class="nav-item" role="presentation" id="tabDesign">
+                            <a class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                                data-bs-target="#design-panel" role="tab" aria-controls="design-panel"
+                                aria-selected="true">Form view.</a>
+                        </li>
+                        <li class="nav-item" role="presentation" id="tabHTML">
+                            <a class="nav-link" id="html-tab" data-bs-toggle="tab" data-bs-target="#html-panel"
+                                role="tab" aria-controls="html-panel" aria-selected="false">HTML.</a>
+                        </li>
+                        <li class="nav-item" role="presentation" id="tabJS">
+                            <a class="nav-link" id="js-tab" data-bs-toggle="tab" data-bs-target="#js-panel" role="tab"
+                                aria-controls="js-panel" aria-selected="false">Javascript.</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <!-- design tab -->
+                        <div class="tab-pane fade show active" id="design-panel" role="tabpanel"
+                            aria-labelledby="home-tab">
+                            <span class="visually-hidden">Design</span>
+                            <div class="design-preview" id="design-output">
+                                <p class="text-center">No preview available</p>
+                            </div>
+                        </div>
+                        <!-- html tab -->
+                        <div class="tab-pane fade" id="html-panel" role="tabpanel" aria-labelledby="profile-tab">
+                            <span class="visually-hidden">HTML</span>
+
+                            <!-- html output text container -->
+                            <div class="code-block">
+                                <pre><code id="html-preview" class="language-html"></code></pre>
+                            </div>
+
+
+                            <textarea class="form-control" id="html-output" rows="10"
+                                style="height: 60vh !important;"></textarea>
+                        </div>
+                        <!-- js tab -->
+                        <div class="tab-pane fade" id="js-panel" role="tabpanel" aria-labelledby="contact-tab">
+                            <span class="visually-hidden">Javascript</span>
+                            <!-- js output text container -->
+                            <div class="code-block">
+                                <pre><code id="js-preview" class="language-javascript"></code></pre>
+                            </div>
+
+                            <textarea class="form-control" id="js-output" rows="10"
+                                style="height: 60vh !important;"></textarea>
+                        </div>
+                    </div>
+                    <!-- ./ bootstrap tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // load design pallete
+            // $("#design-pallete-container").load("design-pallete.php");
+            // load preview output
+            // $("#preview-output-container").load("preview-output.php");
+
+            // PREVIEW_FORM_STYLE is used to determine what the default form structure is: inline or grid (input labels and input form are placed in a row object) style
+            // check if PREVIEW_FORM_STYLE is set in localstorage
+            var previewFormStyle = localStorage.getItem("PREVIEW_FORM_STYLE");
+            if (previewFormStyle == null) {
+                // set it to the default structure: inline
+                localStorage.setItem("PREVIEW_FORM_STYLE", "inline");
+                previewFormStyle = "inline";
+            } else {
+                previewFormStyle = localStorage.getItem("PREVIEW_FORM_STYLE");
+            }
+
+            if (previewFormStyle == "inline") {
+                document.getElementById("inlineRadiobtn").checked = true;
+                document.getElementById("gridRadiobtn").checked = false;
+            } else {
+                document.getElementById("inlineRadiobtn").checked = false;
+                document.getElementById("gridRadiobtn").checked = true;
+            }
+
+
+            $.compileDesignPallete = function () {
+                // 1. get function call get_db_table_names.php and output to #design-pallete-container
+                $.get("scripts/php/form_generation/get_db_table_names.php", function (data) {
+                    if (data == "error" || data == "") {
+                        alert("Error: " + data);
+                        console.log(
+                            "get request has failed calling [get_db_table_names.php]: \n[Status]: " +
+                            status + "\n[Data]: " + data
+                        );
+                        $("#dbtables-list-container").html("<p class='text-center'>Error loading design pallete</p>");
+                    } else {
+                        $("#dbtables-list-container").html(data);
+                    }
+                });
+
+            }
+
+
+            $.compileFormPreview = function (tableName) {
+                // set the table name in localstorage
+                let previewFormStyle = localStorage.setItem("DB_TABLE_NAME", tableName);
+
+                // get the initial form design preview
+                $.get("scripts/php/form_generation/generate_form_from_dbtable.php?tblname=" + tableName + "&style=" + previewFormStyle, function (data) {
+                    if (data == "error" || data == "") {
+                        alert("Error: " + data);
+                        console.log(
+                            "get request has failed calling [generate_form_from_dbtable.php]: \n[Status]: " +
+                            status + "\n[Data]: " + data
+                        );
+                        $("#design-output").html("<p class='text-center'>Error loading design preview</p>");
+
+                        $("#html-output").val("Error loading design preview");
+                        // $("#html-preview").text("<p class='text-center'>Error loading design preview</p>");
+                        // call Prism to highlight the code
+                        $.compilePrismOutputHTML("Error loading design preview");
+                    } else {
+                        // to see the form design output
+                        $("#design-output").html(data);
+
+                        // to see the html output
+                        $("#html-output").val(data);
+                        // $("#html-preview").text(data);
+                        // call Prism to highlight the code
+                        $.compilePrismOutputHTML(data);
+                    }
+                });
+
+                // 3. get function call generate_form_jquery_from_dbtable.php.php?req=js and output to #js-preview
+                $.get("scripts/php/form_generation/generate_form_jquery_from_dbtable.php?tblname=" + tableName, function (data) {
+                    if (data == "error" || data == "") {
+                        alert("Error: " + data);
+                        console.log(
+                            "get request has failed calling [generate_form_jquery_from_dbtable.php.php]: \n[Status]: " +
+                            status + "\n[Data]: " + data
+                        );
+
+                        $("#js-output").val("Error loading form jquery");
+                        // $("#js-preview").text("<p class='text-center'>Error loading form jquery</p>");
+                        $.compilePrismOutputJavascript("Error loading form jquery");
+                    } else {
+                        $("#js-output").val(data);
+                        // $("#js-preview").text(data);
+                        $.compilePrismOutputJavascript(data);
+                    }
+                });
+
+
+
+            }
+
+
+            $.compilePrismOutputHTML = function (input) {
+                //*** copilot inline:
+                // get html output
+                //var htmlOutput = $("#html-output").val();
+                // get js output
+                // var jsOutput = $("#js-output").val();
+                // get design output
+                // var designOutput = $("#design-output").html();
+
+                // set html output
+                //$("#html-preview").html(htmlOutput);
+                // set js output
+                // $("#js-preview").html(jsOutput);
+                // set design output
+                // $("#design-preview").html(designOutput);
+
+                // compile prism
+                //Prism.highlightAll();
+
+                //*** copilot chat:
+                // Get the HTML code
+                var htmlCode = input //document.getElementById('html-output').value;
+
+                // Indent and add syntax highlighting
+                var indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+
+                // Add the indented and highlighted code to the preview container
+                document.getElementById('html-preview').innerHTML = indentedHtmlCode;
+            }
+
+            $.compilePrismOutputJavascript = function (input) {
+                //*** copilot inline:
+                // get html output
+                //var htmlOutput = $("#html-output").val();
+                // get js output
+                // var jsOutput = $("#js-output").val();
+                // get design output
+                // var designOutput = $("#design-output").html();
+
+                // set html output
+                //$("#html-preview").html(htmlOutput);
+                // set js output
+                // $("#js-preview").html(jsOutput);
+                // set design output
+                // $("#design-preview").html(designOutput);
+
+                // compile prism
+                //Prism.highlightAll();
+
+                //*** copilot chat:
+                // Get the HTML code
+                var jsCode = input //document.getElementById('js-output').value;
+
+                // Indent and add syntax highlighting
+                var indentedHtmlCode = Prism.highlight(jsCode, Prism.languages.javascript, 'javascript');
+
+                // Add the indented and highlighted code to the preview container
+                document.getElementById('js-preview').innerHTML = indentedHtmlCode;
+            }
+
+            // jquery event listener for #inlineRadiobtn radio button
+            $("#inlineRadiobtn").click(function () {
+                // set the preview form style to inline
+                localStorage.setItem("PREVIEW_FORM_STYLE", "inline");
+                // get the table name from localstorage
+                var tableName = localStorage.getItem("DB_TABLE_NAME");
+                if (tableName == null) {
+                    // error: table name is not set in localstorage
+                    alert("Error: table name is not set in localstorage");
+                } else {
+                    // compile the table preview
+                    $.compileFormPreview(tableName);
+                }
+            });
+
+            // jquery event listener for #gridRadiobtn radio button
+            $("#gridRadiobtn").click(function () {
+                // set the preview form style to grid
+                localStorage.setItem("PREVIEW_FORM_STYLE", "grid");
+                // get the table name from localstorage
+                var tableName = localStorage.getItem("DB_TABLE_NAME");
+                if (tableName == null) {
+                    // error: table name is not set in localstorage
+                    alert("Error: table name is not set in localstorage");
+                } else {
+                    // compile the table preview
+                    $.compileFormPreview(tableName);
+                }
+
+            });
+
+            // jquery event listener for #html-output on keyup
+            $("#html-output").keyup(function () {
+                // get the html output
+                var htmlOutput = $("#html-output").val();
+                // set the html preview
+                $("#html-preview").text(htmlOutput);
+                // compile prism
+                Prism.highlightAll();
+                // update #design-utput with the html output
+                $("#design-output").html(htmlOutput);
+            });
+
+            // jquery event listener for #js-output on keyup
+            $("#js-output").keyup(function () {
+                // get the js output
+                var jsOutput = $("#js-output").val();
+                // set the js preview
+                $("#js-preview").text(jsOutput);
+                // compile prism
+                Prism.highlightAll();
+            });
+
+
+
+
+            // jquery event listener for #html-output change
+            // $("#html-output").change(function () {
+            //     // get the html output
+            //     var htmlOutput = $("#html-output").val();
+            //     // set the html preview
+            //     $("#html-preview").text(htmlOutput);
+            //     // compile prism
+            //     Prism.highlightAll();
+            // });
+
+            // jquery event listener for #js-output change
+            // $("#js-output").change(function () {
+            //     // get the js output
+            //     var jsOutput = $("#js-output").val();
+            //     // set the js preview
+            //     $("#js-preview").text(jsOutput);
+            //     // compile prism
+            //     Prism.highlightAll();
+            // });
+
+
+            // initialize the design pallete
+            $.compileDesignPallete();
+        });
+    </script>
+
+    <!-- bootstrap js 5.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- Include Prism JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script> -->
+    <script src="./node_modules/prismjs/prism.js"></script>
+
+</body>
+
+</html>
