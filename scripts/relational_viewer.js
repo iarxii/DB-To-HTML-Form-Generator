@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // event listener for table-search-input input, look for table name in tables-list div
     document.getElementById("table-search-input").addEventListener("input", function () {
-        console.log("Table search input changed!");
+        // console.log("Table search input changed!"); // debug
         let input, filter, ul, li, a, i, txtValue;
         input = document.getElementById("table-search-input");
         filter = input.value.toUpperCase();
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         throttleTimeout = setTimeout(() => {
-            console.log("Drawing relationship lines...");
+            // console.log("Drawing relationship lines..."); // debug
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Clear the throttle timeout
             throttleTimeout = null;
-        }, 100);  // Adjust the throttle time as needed
+        }, 300);  // Adjust the throttle time as needed
     }
 
     // function to position / place tables with more than one relationship on the left side of the canvas and tables with only one relationship on the right side of the canvas
@@ -209,8 +209,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let collapseDetailsContainers = null; // collapse-details-${column.name}
 
     function createDraggableElement(tableName, columns, relatedTables, primaryKey) {
-        console.log("Creating draggable element...");
-        console.log("Table name: " + tableName);
+        // console.log("Creating draggable element..."); // debug
+        // console.log("Table name: " + tableName); // debug
 
         const element = document.createElement('div');
         element.className = 'draggable shadow rounded-4 bg-primary';
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* This function uses the XMLHttpRequest object to make an asynchronous GET request to the specified URL ('scripts/php/relational_viewer/get_tables.php'). The onreadystatechange event is used to handle the response when it's complete. If the request is successful (status 200), it parses the JSON response and calls the init function with the received data.
         You can call fetchTablesData() whenever you want to initiate the AJAX request to retrieve the data from your PHP script. */
     function fetchTablesData() {
-        console.log("Fetching db tables data...");
+        // console.log("Fetching db tables data..."); // debug
 
         // Create a new XMLHttpRequest object
         var xhr = new XMLHttpRequest();
@@ -378,8 +378,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 // store tables data in local storage
                 localStorage.setItem("tablesData", JSON.stringify(tablesData));
 
-                console.log("Table Data returned: ");
-                console.log(tablesData);
+                // console.log("Table Data returned: "); // debug
+                // console.log(tablesData); // debug
 
                 // count number of tables in tablesData
                 let numTables = 0;
