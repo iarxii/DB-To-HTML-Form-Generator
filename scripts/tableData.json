@@ -1,0 +1,2931 @@
+[
+    {
+        "tableName": "admin_activity",
+        "columns": [
+            {
+                "name": "admin_activity_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "action_title",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "action_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "affected_table",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "record_id",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "action_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators",
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "admin_user_profiles",
+        "columns": [
+            {
+                "name": "admin_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "about",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_type",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "verification",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_image_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_banner_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "administrators",
+        "columns": [
+            {
+                "name": "admin_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "username",
+                "type": "varchar(20)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "password_hash",
+                "type": "varchar(225)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_name",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_surname",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "id_number",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_email",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "contact_number",
+                "type": "varchar(15)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date_of_birth",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_gender",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_race",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "admin_nationality",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "account_active",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "app_policies",
+        "columns": [
+            {
+                "name": "policy_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "policy_ref",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_name",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_content",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "cart_items",
+        "columns": [
+            {
+                "name": "cart_item_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "item_name",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "item_quantity",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modification_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "store_carts_store_cart_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "store_products_product_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "store_carts",
+            "store_products"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "category_class",
+        "columns": [
+            {
+                "name": "category_class_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "category_class_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "category_class_name",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "community_group_members",
+        "columns": [
+            {
+                "name": "group_mem_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "group_role",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_join_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "active",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "status",
+                "type": "tinytext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "community_posts",
+        "columns": [
+            {
+                "name": "post_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "post_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "post_message",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modified_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "favourite_ref",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "community_resources",
+        "columns": [
+            {
+                "name": "comm_resource_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "resource_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "resource_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "resource_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "resource_link",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "share_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "exercise_drills",
+        "columns": [
+            {
+                "name": "exercise_drill_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "sport",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "drill_title",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "thumbnail",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "drill_demo_vid",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "training_level",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "target_area",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "benefits",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "rpe",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "instructions",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "exercises",
+        "columns": [
+            {
+                "name": "exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "exercise_name",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "instructions",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "guidelines",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "sets",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "reps",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "rests",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "rpe",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "xp_points",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "training_phase",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "fitblog_comment_comments",
+        "columns": [
+            {
+                "name": "comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "post_comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "fitblog_post_comments"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "fitblog_post_comments",
+        "columns": [
+            {
+                "name": "post_comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "post_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "fitblog_posts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "fitblog_posts",
+        "columns": [
+            {
+                "name": "post_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "post_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "post_content",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "verified",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modified_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "fave_ref",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "followers",
+        "columns": [
+            {
+                "name": "follow_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_follower_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "follow_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "friends",
+        "columns": [
+            {
+                "name": "friendship_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_friend_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "accept_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "unfriend_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "friendship_status",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "general_user_profiles",
+        "columns": [
+            {
+                "name": "user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "about",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_type",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "verification",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_image_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "profile_banner_url",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "groups",
+        "columns": [
+            {
+                "name": "group_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "group_name",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_category",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_privacy",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "indi_weekly_activities",
+        "columns": [
+            {
+                "name": "indi_activity_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "activity_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "activity_description",
+                "type": "varchar(200)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "activity_icon",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "indi_weekly_schedules_indi_weekly_schedule_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "indi_weekly_schedules",
+            "exercises"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "indi_weekly_schedules",
+        "columns": [
+            {
+                "name": "indi_weekly_schedule_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "schedule_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_rpe",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_day",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "muscle_groups",
+        "columns": [
+            {
+                "name": "muscle_group_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "major_muscle_group",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "sub_muscle_group",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "position_definition",
+                "type": "text",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "news",
+        "columns": [
+            {
+                "name": "article_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "article_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "content",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "notifications",
+        "columns": [
+            {
+                "name": "notification_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "notification_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "notification_message",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "notification_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "notification_read",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "post_comment_comments",
+        "columns": [
+            {
+                "name": "comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "comment",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "post_comments_post_comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "post_comments"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "post_comments",
+        "columns": [
+            {
+                "name": "post_comment_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "comment",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "comment_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "community_posts_post_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "community_posts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "post_media",
+        "columns": [
+            {
+                "name": "post_media_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "media_type",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "media_url",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "posted_to",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "community_posts_post_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "community_posts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "premium_group_members",
+        "columns": [
+            {
+                "name": "group_mem_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "group_role",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_join_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "active",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "status",
+                "type": "tinytext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "pro_subscriptions",
+        "columns": [
+            {
+                "name": "pro_subscription_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "reference_number",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "subscription_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "payment_cycle",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "account_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "sports_list",
+        "columns": [
+            {
+                "name": "sport_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "category",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "name",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "store_carts",
+        "columns": [
+            {
+                "name": "store_cart_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "cart_reference",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "cart_items_total",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modification_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modified_by",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "store_products",
+        "columns": [
+            {
+                "name": "product_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "inventory_number",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_name",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_brand",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_category",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "purchase_price_zar",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "selling_price_zar",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_specifications",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_weight",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "inventory_status",
+                "type": "tinyint(4)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_tag",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "product_image_url",
+                "type": "text",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "supplements_list",
+        "columns": [
+            {
+                "name": "supplements_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "category_tags",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "supplement_type",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "recommended_dosage",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "source",
+                "type": "text",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "team_athletics_match_schedules",
+        "columns": [
+            {
+                "name": "team_athletics_match_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "match_title",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "home_team",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "away_team",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "match_venue",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "match_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "start_time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "standard_match_duration",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "observed_match_duration",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "match_result",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "team_weekly_activities",
+        "columns": [
+            {
+                "name": "teams_activity_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "activity_title",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "activity_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "activity_icon",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "teams_weekly_schedules_teams_weekly_schedule_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "teams_weekly_schedules"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "teams_color_tags",
+        "columns": [
+            {
+                "name": "color_tag_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "tag_ref_id",
+                "type": "varchar(50)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "tag_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "tag_color",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "administrators_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "administrators"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "teams_group_members",
+        "columns": [
+            {
+                "name": "team_mem_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "group_sport",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_role",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "field_position",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "group_join_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "active",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "status",
+                "type": "tinytext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "teams_weekly_schedules",
+        "columns": [
+            {
+                "name": "teams_weekly_schedule_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "schedule_title",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_rpe",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_day",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "schedule_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "color_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "groups_group_ref_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "groups"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_access_tokens",
+        "columns": [
+            {
+                "name": "user_access_token_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "access_token",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_activity",
+        "columns": [
+            {
+                "name": "user_activity_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "action_title",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "action_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "affected_table",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "record_id",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "action_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_challenge_cmplt_log",
+        "columns": [
+            {
+                "name": "challenge_log_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_challenges_workout_challenge_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "completion_datetime",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users",
+            "workout_challenges"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_conversation_messages",
+        "columns": [
+            {
+                "name": "message_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "user_conversations_conversation_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "send_message_to",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "message",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "send_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "message_read",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "message_deleted",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "user_conversations",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_conversation_users",
+        "columns": [
+            {
+                "name": "user_conversation_user_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "user_conversations_conversation_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "user_conversations",
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_conversations",
+        "columns": [
+            {
+                "name": "conversation_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "conversations_reference",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "conversation_start_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_favourites",
+        "columns": [
+            {
+                "name": "favourite_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "content_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "content_id",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "favourite_reference",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "favourite_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_interests",
+        "columns": [
+            {
+                "name": "interest_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "interest_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "interest_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "creation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_likes",
+        "columns": [
+            {
+                "name": "like_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "content_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "content_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "like_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_policy_acceptance",
+        "columns": [
+            {
+                "name": "user_policy_acceptance_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "policy_reference",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_name",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "policy_effective_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_accepted",
+                "type": "tinyint(4)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_accepted_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_about",
+        "columns": [
+            {
+                "name": "user_profile_about_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "height",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "weight",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bmi",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bmi_status",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "log_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitness_stats_bmi",
+        "columns": [
+            {
+                "name": "fitness_stats_bmi_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_activity",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "datasource",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bmi",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bmi_status",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "weight",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitness_stats_body_temp",
+        "columns": [
+            {
+                "name": "fitness_stats_bt_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_activity",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "datasource",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "temperature",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitness_stats_heart_rate",
+        "columns": [
+            {
+                "name": "fitness_stats_hr_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_activity",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "datasource",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bpm",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitness_stats_speed",
+        "columns": [
+            {
+                "name": "fitness_stats_speed_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_activity",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "datasource",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "speed",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitness_stats_step_count",
+        "columns": [
+            {
+                "name": "fitness_stats_sc_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_activity",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "datasource",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "steps",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time",
+                "type": "time",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_fitprefs",
+        "columns": [
+            {
+                "name": "user_profile_fitpref_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "how_fit_are_you",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "last_time_ideal_weight",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "body_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "suffer_from_joint_pain",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "daily_life_activity",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "energy_levels_during_day",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "night_sleep_hours",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "daily_water_intake",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "prefared_classes",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "log_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_goalsetting",
+        "columns": [
+            {
+                "name": "user_profile_goal_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "fitness_goals",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "goal_statement",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "realize_goal_date",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "body_area_focus",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workouts_to_do_week",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "time_to_workout",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "weeks_to_start",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "bad_habits",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "prepared_letgoof_badhabits",
+                "type": "tinyint(4)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "pref_cheat_day",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "will_do_cheat_day",
+                "type": "longtext",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "log_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_media",
+        "columns": [
+            {
+                "name": "user_prof_media_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "media_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "media_url",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "upload_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_profile_xp",
+        "columns": [
+            {
+                "name": "user_xp_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "xp_points_received",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "allocation_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "allocation_definition",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "add_xp_modifier",
+                "type": "tinyint(4)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "add_rate",
+                "type": "float",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "total_xp",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "general_user_profiles_user_profile_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "general_user_profiles"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_socials",
+        "columns": [
+            {
+                "name": "user_social_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "social_network",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "handle",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "link",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_system_settings",
+        "columns": [
+            {
+                "name": "sys_setting_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "ui_mode",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "user_workout_achievements",
+        "columns": [
+            {
+                "name": "user_workout_achievement_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "completion_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "users",
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "users",
+        "columns": [
+            {
+                "name": "user_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "username",
+                "type": "varchar(20)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "password_hash",
+                "type": "varchar(225)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_name",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_surname",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "id_number",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_email",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "contact_number",
+                "type": "varchar(15)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "date_of_birth",
+                "type": "date",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_gender",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_race",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "user_nationality",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "account_active",
+                "type": "tinyint(1)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [],
+        "primaryKey": true
+    },
+    {
+        "tableName": "weekly_workout_schedules",
+        "columns": [
+            {
+                "name": "weekly_workout_schedule_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "day",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workout_activity_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "workout_challenges",
+        "columns": [
+            {
+                "name": "workout_challenge_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "category_class_category_class_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "challenge_title",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "challenge_xp",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "instructions",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "guidelines",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "sets",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "reps",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "rests",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "challenge_frequency",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "challenge_cycle",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "created",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "created_by",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modified",
+                "type": "datetime",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "modified_by",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "assigned_to",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "category_class",
+            "exercises",
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "workout_subscribers",
+        "columns": [
+            {
+                "name": "workout_subscriber_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "users_username",
+                "type": "varchar(20)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "subscription_date",
+                "type": "datetime",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "users",
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "workout_summary",
+        "columns": [
+            {
+                "name": "workout_summary_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "main_goal",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workout_type",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "training_level",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "program_duration",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "days_per_week",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "target_gender",
+                "type": "varchar(10)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "recommended_supplements",
+                "type": "varchar(255)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "workout_training",
+        "columns": [
+            {
+                "name": "workout_training_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workouts_workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "exercises_exercise_id",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "exercises",
+            "workouts"
+        ],
+        "primaryKey": true
+    },
+    {
+        "tableName": "workouts",
+        "columns": [
+            {
+                "name": "workout_id",
+                "type": "int(11)",
+                "isPrimaryKey": true
+            },
+            {
+                "name": "workout_name",
+                "type": "varchar(100)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "workout_description",
+                "type": "text",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "goal_definition",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "total_xp_points",
+                "type": "int(11)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "premium",
+                "type": "tinyint(4)",
+                "isPrimaryKey": false
+            },
+            {
+                "name": "category_class_category_class_code",
+                "type": "varchar(50)",
+                "isPrimaryKey": false
+            }
+        ],
+        "relatedTables": [
+            "category_class"
+        ],
+        "primaryKey": true
+    }
+]

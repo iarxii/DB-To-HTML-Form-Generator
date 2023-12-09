@@ -10,6 +10,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <!-- w3 animate -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -19,6 +22,9 @@
     <!-- object-styles.css styles -->
     <link rel="stylesheet" href="css/object-styles.css">
 
+    <!-- code_editing.css style -->
+    <link rel="stylesheet" href="css/code_editing.css">
+
     <!-- Include Prism CSS -->
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" /> -->
     <link href="./node_modules/prismjs/themes/prism.css" rel="stylesheet" />
@@ -27,6 +33,7 @@
 </head>
 
 <body>
+    <div id="snackbar" class="snackbar"></div>
     <div id="root" class="container-fluid">
         <div class="row">
             <div class="col-md-4">
@@ -74,7 +81,11 @@
 
                 <!-- db table list -->
                 <div class="material-rounded-panel mb-4" style="max-height: 66vh;" id="dbtables-list-container">
-
+                    <div class="text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Waiting for list...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-8">
@@ -85,17 +96,17 @@
                     <ul class="nav nav-tabs sticky-top m-0 bg-white rounded-2" style="overflow: hidden;" id="myTab"
                         role="tablist">
                         <li class="nav-item" role="presentation" id="tabDesign">
-                            <a class="nav-link active" id="design-tab" data-bs-toggle="tab"
+                            <a class="nav-link fs-bold active" id="design-tab" data-bs-toggle="tab"
                                 data-bs-target="#design-panel" role="tab" aria-controls="design-panel"
                                 aria-selected="true">Form view.</a>
                         </li>
                         <li class="nav-item" role="presentation" id="tabHTML">
-                            <a class="nav-link" id="html-tab" data-bs-toggle="tab" data-bs-target="#html-panel"
+                            <a class="nav-link fs-bold" id="html-tab" data-bs-toggle="tab" data-bs-target="#html-panel"
                                 role="tab" aria-controls="html-panel" aria-selected="false">HTML.</a>
                         </li>
                         <li class="nav-item" role="presentation" id="tabJS">
-                            <a class="nav-link" id="js-tab" data-bs-toggle="tab" data-bs-target="#js-panel" role="tab"
-                                aria-controls="js-panel" aria-selected="false">Javascript.</a>
+                            <a class="nav-link fs-bold" id="js-tab" data-bs-toggle="tab" data-bs-target="#js-panel"
+                                role="tab" aria-controls="js-panel" aria-selected="false">Javascript.</a>
                         </li>
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -103,33 +114,118 @@
                         <div class="tab-pane fade show active" id="design-panel" role="tabpanel"
                             aria-labelledby="home-tab">
                             <span class="visually-hidden">Design</span>
-                            <div class="design-preview" id="design-output">
-                                <p class="text-center">No preview available</p>
+                            <div class="design-preview w3-animate-left" id="design-output">
+                                <p class="text-center py-5">No preview available</p>
                             </div>
                         </div>
                         <!-- html tab -->
                         <div class="tab-pane fade" id="html-panel" role="tabpanel" aria-labelledby="profile-tab">
                             <span class="visually-hidden">HTML</span>
+                            <!-- function seperator accordion -->
+                            <div class="accordion accordion-flush" id="accordionFlushHTML">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button btn btn-primary fw-bold fs-5" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="true" aria-controls="flush-collapseOne">
+                                            View form code.
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
 
-                            <!-- html output text container -->
-                            <div class="code-block">
-                                <pre><code id="html-preview" class="language-html"></code></pre>
+                                            <!-- html output text container -->
+                                            <div class="code-block">
+                                                <pre><code id="html-preview" class="language-html"> 
+                                                    <p> Select a table. </p> 
+                                                </code></pre>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button btn btn-primary fw-bold fs-5 collapsed"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Edit form code.
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+
+                                            <div class="d-grid" style="height: 400px;position: relative;">
+                                                <!-- html code editor -->
+                                                <pre id="html-editing" class="highlighting" aria-hidden="true">
+                                                    <code id="html-editing-highlighting" class="language-html"></code>
+                                                </pre>
+                                                <textarea class="editing" id="html-output" spellcheck="false"
+                                                    oninput="sync_scroll(this,'#html-editing');"
+                                                    onscroll="sync_scroll(this,'#html-editing');"></textarea>
+                                                <!-- oninput="editorUpdate(this.value);" -->
+                                                <!-- ./ html code editor -->
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-
-
-                            <textarea class="form-control" id="html-output" rows="10"
-                                style="height: 60vh !important;"></textarea>
                         </div>
                         <!-- js tab -->
                         <div class="tab-pane fade" id="js-panel" role="tabpanel" aria-labelledby="contact-tab">
                             <span class="visually-hidden">Javascript</span>
-                            <!-- js output text container -->
-                            <div class="code-block">
-                                <pre><code id="js-preview" class="language-javascript"></code></pre>
+                            <!-- function seperator accordion -->
+                            <div class="accordion accordion-flush" id="accordionFlushJS">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button btn btn-primary fw-bold fs-5" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                            aria-expanded="true" aria-controls="flush-collapseOne">
+                                            View form code.
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseOne" class="accordion-collapse collapse show"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+
+                                            <!-- js output text container -->
+                                            <div class="code-block">
+                                                <pre><code id="js-preview" class="language-javascript"></code></pre>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button btn btn-primary fw-bold fs-5 collapsed"
+                                            type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo"
+                                            aria-expanded="false" aria-controls="flush-collapseTwo">
+                                            Edit form code.
+                                        </button>
+                                    </h2>
+                                    <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionFlushExample">
+                                        <div class="accordion-body">
+
+                                            <div class="d-grid" style="height: 400px;position: relative;">
+                                                <!-- js code editor -->
+                                                <pre id="js-editing" class="highlighting" aria-hidden="true">
+                                                    <code id="js-editing-highlighting" class="language-javascript"></code>
+                                                </pre>
+                                                <textarea class="editing" id="js-output" spellcheck="false"
+                                                    oninput="sync_scroll(this,'#js-editing');"
+                                                    onscroll="sync_scroll(this,'#js-editing');"></textarea>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <textarea class="form-control" id="js-output" rows="10"
-                                style="height: 60vh !important;"></textarea>
                         </div>
                     </div>
                     <!-- ./ bootstrap tabs -->
@@ -139,6 +235,15 @@
     </div>
 
     <script>
+        function sync_scroll(element, scrollElement) {
+            /* Scroll result to scroll coords of event - sync with textarea */
+            let result_element = document.querySelector(scrollElement);
+            // Get and set x and y
+            result_element.scrollTop = element.scrollTop;
+            result_element.scrollLeft = element.scrollLeft;
+        }
+
+        // jquery
         $(document).ready(function () {
             // load design pallete
             // $("#design-pallete-container").load("design-pallete.php");
@@ -163,6 +268,22 @@
                 document.getElementById("inlineRadiobtn").checked = false;
                 document.getElementById("gridRadiobtn").checked = true;
             }
+
+            // show snackbar
+            $.showSnackbar = function (message) {
+                // Get the snackbar DIV
+                var x = document.getElementById("snackbar");
+
+                // Add the "show" class to DIV
+                x.className = "show";
+                x.innerHTML = message;
+
+                // After 5 seconds, remove the show class from DIV
+                setTimeout(function () {
+                    x.className = x.className.replace("show", "");
+                }, 5000);
+            }
+
 
 
             $.compileDesignPallete = function () {
@@ -195,10 +316,13 @@
                             "get request has failed calling [generate_form_from_dbtable.php]: \n[Status]: " +
                             status + "\n[Data]: " + data
                         );
+
+                        // push error message to #design-output
                         $("#design-output").html("<p class='text-center'>Error loading design preview</p>");
 
+                        // push error message to #html-output
                         $("#html-output").val("Error loading design preview");
-                        // $("#html-preview").text("<p class='text-center'>Error loading design preview</p>");
+
                         // call Prism to highlight the code
                         $.compilePrismOutputHTML("Error loading design preview");
                     } else {
@@ -207,7 +331,7 @@
 
                         // to see the html output
                         $("#html-output").val(data);
-                        // $("#html-preview").text(data);
+
                         // call Prism to highlight the code
                         $.compilePrismOutputHTML(data);
                     }
@@ -232,29 +356,49 @@
                     }
                 });
 
+                // show snackbar with message
+                $.showSnackbar("Form preview generated for table: " + tableName + "");
+            }
 
+            function editorUpdate(input, language, outputid) {
+                // Handle final newlines (see article)
+                if (input[input.length - 1] == "\n") { // If the last character is a newline character
+                    input += " "; // Add a placeholder space character to the final line 
+                }
+
+                // Get the HTML code
+                var htmlCode = input //document.getElementById('html-editing-input').value;
+
+                var indentedHtmlCode;
+
+                result_element = document.getElementById(outputid);
+
+                switch (language) {
+                    case "html":
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+                        break;
+                    case "js":
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.javascript, 'javascript');
+                        break;
+                    default:
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+                        break;
+                }
+
+                // Add the indented and highlighted code to the preview container
+                // result_element.innerHTML = indentedHtmlCode; 
+                result_element.innerHTML = indentedHtmlCode.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "<"); /* Global RegExp */
+
+                // Syntax Highlight
+                Prism.highlightElement(result_element);
 
             }
 
 
             $.compilePrismOutputHTML = function (input) {
-                //*** copilot inline:
-                // get html output
-                //var htmlOutput = $("#html-output").val();
-                // get js output
-                // var jsOutput = $("#js-output").val();
-                // get design output
-                // var designOutput = $("#design-output").html();
-
-                // set html output
-                //$("#html-preview").html(htmlOutput);
-                // set js output
-                // $("#js-preview").html(jsOutput);
-                // set design output
-                // $("#design-preview").html(designOutput);
-
-                // compile prism
-                //Prism.highlightAll();
 
                 //*** copilot chat:
                 // Get the HTML code
@@ -265,26 +409,11 @@
 
                 // Add the indented and highlighted code to the preview container
                 document.getElementById('html-preview').innerHTML = indentedHtmlCode;
+                // Add the indented and highlighted code to the text editing container
+                editorUpdate(htmlCode, "html", "html-editing-highlighting");
             }
 
             $.compilePrismOutputJavascript = function (input) {
-                //*** copilot inline:
-                // get html output
-                //var htmlOutput = $("#html-output").val();
-                // get js output
-                // var jsOutput = $("#js-output").val();
-                // get design output
-                // var designOutput = $("#design-output").html();
-
-                // set html output
-                //$("#html-preview").html(htmlOutput);
-                // set js output
-                // $("#js-preview").html(jsOutput);
-                // set design output
-                // $("#design-preview").html(designOutput);
-
-                // compile prism
-                //Prism.highlightAll();
 
                 //*** copilot chat:
                 // Get the HTML code
@@ -296,6 +425,33 @@
                 // Add the indented and highlighted code to the preview container
                 document.getElementById('js-preview').innerHTML = indentedHtmlCode;
             }
+
+            // jquery event listener for #html-output on keyup
+            $("#html-output").keyup(function () {
+                // get the html output
+                var htmlOutput = $("#html-output").val();
+                // set the html preview
+                $("#html-preview").text(htmlOutput);
+                // update html text editor inputs content
+                editorUpdate(htmlOutput, "html", "html-editing-highlighting");
+                // compile prism
+                Prism.highlightAll();
+                // update #design-utput with the html output
+                $("#design-output").html(htmlOutput);
+            });
+
+            // jquery event listener for #js-output on keyup
+            $("#js-output").keyup(function () {
+                // get the js output
+                var jsOutput = $("#js-output").val();
+                // set the js preview
+                $("#js-preview").text(jsOutput);
+                // update html text editor inputs content
+                // editorUpdate(htmlOutput, "js", "js-editing-highlighting");
+                $('#html-editing-highlighting').text(jsOutput);
+                // compile prism
+                Prism.highlightAll();
+            });
 
             // jquery event listener for #inlineRadiobtn radio button
             $("#inlineRadiobtn").click(function () {
@@ -327,30 +483,6 @@
                 }
 
             });
-
-            // jquery event listener for #html-output on keyup
-            $("#html-output").keyup(function () {
-                // get the html output
-                var htmlOutput = $("#html-output").val();
-                // set the html preview
-                $("#html-preview").text(htmlOutput);
-                // compile prism
-                Prism.highlightAll();
-                // update #design-utput with the html output
-                $("#design-output").html(htmlOutput);
-            });
-
-            // jquery event listener for #js-output on keyup
-            $("#js-output").keyup(function () {
-                // get the js output
-                var jsOutput = $("#js-output").val();
-                // set the js preview
-                $("#js-preview").text(jsOutput);
-                // compile prism
-                Prism.highlightAll();
-            });
-
-
 
 
             // jquery event listener for #html-output change

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Database Relational Viewer</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/relational_viewer.css">
+
+    <!-- w3 animate -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- bootstrap css 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <script src="scripts/relational_viewer.js"></script>
+</head>
+
+<body class="noselect">
+    <div id="snackbar">Notification.</div>
+    <div class="header shadow d-flex gap-4 justify-content-start align-items-center">
+        <button class="btn btn-primary btn-lg button" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#menu-offcanvas" aria-controls="menu-offcanvas">
+            <span class="material-icons material-icons-outlined align-middle">
+                widgets
+            </span>
+            <span>Menu</span>
+        </button>
+        <!-- click refresh / reload btn -->
+        <button id="head-refresh-btn" onclick="document.location.reload;alert('refreshed.');"
+            class="btn btn-primary btn-lg button">
+            <span class="material-icons material-icons-round align-middle" style="font-size: 20px !important;">
+                sync </span>
+            Refresh.
+        </button>
+        <h1 class="fs-5 text-primary m-0" id="page-header-title">Database Relational Viewer (Version 1.0.0)</h1>
+    </div>
+
+    <div class="offcanvas offcanvas-start show sidebar shadow" tabindex="-1" id="menu-offcanvas"
+        aria-labelledby="menuOffcanvasLabel">
+        <div class="offcanvas-header sticky-top bg-white">
+            <div class="d-grid mt-0 bg-white pt-2">
+                <h1 id="menuOffcanvasLabel" class="visually-hidden">Menu.</h1>
+                <!-- refresh button -->
+                <div class="d-flex gap-2 justify-content-start horizontal-scroll" style="direction: ltr;">
+                    <!-- refresh / reload btn -->
+                    <button id="refresh-btn" class="btn btn-primary btn-lg button">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 20px !important;">
+                            sync </span>
+                        Reload.
+                    </button>
+                    <!-- toggle table details collapse btn -->
+                    <button id="toggle-table-details-btn" class="btn btn-primary" type="button"
+                        data-bs-toggle="collapse" data-bs-target=".multi-collapse" aria-expanded="true">
+                        <span class="material-icons material-icons-round align-middle"
+                            style="font-size: 20px !important;">
+                            list </span>
+                        Dbtbl Details.
+                    </button>
+                    <!-- aria-controls="multiCollapseExample1 multiCollapseExample2" -->
+                </div>
+                <hr>
+                <!-- search bar -->
+                <div class="search-container">
+                    <!-- oninput call search function -->
+                    <!-- <input type="text" placeholder="Search..." id="table-search-bar"> -->
+                    <div class="input-group mb-3" style="direction: ltr;">
+                        <span class="input-group-text text-bg-primary gap-1" id="table-search">
+                            <span class="material-icons material-icons-round align-middle"
+                                style="font-size: 20px !important;">
+                                search </span>
+                        </span>
+                        <input id="table-search-input" type="text" class="form-control" placeholder="table search"
+                            aria-label="table search" aria-describedby="table-search">
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div id="tables-list">
+                <!-- loading -->
+                <div class="w-100 p-4 text-center" style="height: auto;">'
+                    <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas-body">
+            <small class="m-0" style="font-size: 12px;">Crafted by AdaptivConcept FL &copy; 2023</small>
+        </div>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <!-- bootstrap js 5.3 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

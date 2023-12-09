@@ -1,0 +1,53 @@
+/* source: https://css-tricks.com/creating-an-editable-textarea-that-supports-syntax-highlighted-code/ */
+
+.editing,
+.highlighting {
+    /* Both elements need the same text and space styling so they are directly on top of each other */
+    margin: 10px;
+    padding: 10px;
+    border: 0;
+    width: calc(100% - 32px);
+    height: 300px;
+}
+
+.editing,
+.highlighting,
+.highlighting * {
+    /* Also add text styles to highlighting tokens */
+    font-size: 15pt;
+    font-family: monospace;
+    line-height: 20pt;
+    /* white-space: pre-wrap; */
+}
+
+.editing,
+.highlighting {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Move the textarea in front of the result */
+.editing {
+    z-index: 1;
+    /* Make textarea almost completely transparent */
+    color: transparent;
+    background: transparent;
+    caret-color: red;
+    /* Or choose your favorite color */
+    /* No resize on textarea */
+    resize: none;
+}
+
+.highlighting {
+    z-index: 0;
+    /* background-color: var(--primary-color-dark); */
+}
+
+/* Can be scrolled */
+.editing,
+.highlighting {
+    overflow: auto;
+    white-space: nowrap;
+    /* Allows textarea to scroll horizontally */
+}

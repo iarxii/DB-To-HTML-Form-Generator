@@ -49,3 +49,44 @@
     transition: all 0.3s ease-out;
     max-height: 40vh;
 }
+
+#snackbar {
+    display: none;
+    /* min-width: 250px; */
+    width: 100%;
+    /* margin-left: -125px; */
+    background-color: var(--accent-color);
+    color: var(--header-color);
+    font-weight: bold;
+    text-align: center;
+    border-radius: 2px;
+    padding: 20px;
+    position: fixed;
+    z-index: 1999;
+    /* left: 50%; */
+    /* bottom: 30px; */
+    left: 0px;
+    top: 0px;
+    font-size: 17px;
+}
+
+.show {
+    display: block !important;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
