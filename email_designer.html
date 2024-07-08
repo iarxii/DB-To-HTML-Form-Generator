@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Designer</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/base.css">
+
+    <link rel="stylesheet" href="./css/email.css">
+
+    <link rel="stylesheet" href="./css/code_editing.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Include Prism CSS -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet" /> -->
+    <link href="./node_modules/prismjs/themes/prism.css" rel="stylesheet" />
+
+    <!-- load jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <!-- controls panel -->
+                <h1>Control panel.</h1>
+                <div id="control-panel">
+                    <div class="text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <!-- design window -->
+                <h5>Designer.</h5>
+                <div id="main-body">
+                    <div class="text-center">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./ .container-fluid -->
+
+    <script>
+        // jquery on document ready
+        $(document).ready(function () {
+
+            function editorUpdate(input, language, outputid) {
+                console.log(`editorUpdate(${input}, ${language}, ${outputid})`); // debug
+                // Handle final newlines (see article)
+                if (input[input.length - 1] == "\n") { // If the last character is a newline character
+                    input += " "; // Add a placeholder space character to the final line 
+                }
+
+                // Get the HTML code
+                var htmlCode = input //document.getElementById('html-editing-input').value;
+
+                var indentedHtmlCode;
+
+                result_element = document.getElementById(outputid);
+
+                switch (language) {
+                    case "html":
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+                        break;
+                    case "js":
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.javascript, 'javascript');
+                        break;
+                    default:
+                        // Indent and add syntax highlighting
+                        indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+                        break;
+                }
+
+                // Add the indented and highlighted code to the preview container
+                // result_element.innerHTML = indentedHtmlCode; 
+                result_element.innerHTML = indentedHtmlCode.replace(new RegExp("&", "g"), "&").replace(new RegExp("<", "g"), "<"); /* Global RegExp */
+
+                // Syntax Highlight
+                Prism.highlightElement(result_element);
+
+            }
+
+            $.compilePrismOutputHTML = function (input) {
+                console.log('$.compilePrismOutputHTML'); // debug
+                //*** copilot chat:
+                // Get the HTML code
+                var htmlCode = input //document.getElementById('html-output').value;
+
+                // Indent and add syntax highlighting
+                var indentedHtmlCode = Prism.highlight(htmlCode, Prism.languages.markup, 'markup');
+
+                // Add the indented and highlighted code to the text editot
+                document.getElementById('html-output').innerHTML = indentedHtmlCode;
+                // Add the indented and highlighted code to the text editing container
+                editorUpdate(htmlCode, "html", "html-editing-highlighting");
+
+
+            }
+
+            function sync_scroll(element, target) {
+                var $element = $(element);
+                var $target = $(target);
+                var element_scrollTop = $element.scrollTop();
+                var target_scrollTop = element_scrollTop / ($element[0].scrollHeight - $element.height()) * ($target[0].scrollHeight - $target.height());
+                $target.scrollTop(target_scrollTop);
+            }
+
+            // ajax call to get the email template
+            $.ajax({
+                url: 'http://localhost:8081/db_form_html_generator/scripts/php/email_designer/get_email_template.php',
+                type: 'GET',
+                success: function (data) {
+                    // console.log(data); // debug
+                    console.log("data.length: ", data.length); // debug
+
+                    // append the main mail body to the main body
+                    $('#main-body').html(data);
+
+                    $('#control-panel').html(`
+                    <div>
+                        <div style="min-height:100px;">
+                            <h5>Stuff...</h5>
+                        </div>
+                        <div>
+                            <h5>Code.</h5>
+                            <div class="d-grid" style="height: 400px;position: relative;">
+                                <!-- html code editor -->
+                                <pre id="html-editing" class="highlighting" aria-hidden="true">
+                                    <code id="html-editing-highlighting" class="language-html"></code>
+                                </pre>
+                                <textarea class="editing" id="html-output" spellcheck="false"></textarea>
+                                <!-- oninput="sync_scroll(this,'#html-editing');"
+                                    onscroll="sync_scroll(this,'#html-editing');" -->
+                                <!-- oninput="editorUpdate(this.value);" -->
+                                <!-- ./ html code editor -->
+                            </div>
+                        </div>
+                    </div>
+                    `);
+
+                    // set #html-editing-highlighting to the width and height of #html-output persistently
+                    $("#html-editing-highlighting").css("width", $("#html-output").css("width"));
+
+                    $("#html-editing-highlighting").css("height", $("#html-output").css("height"));
+
+
+                    // event listener for #html-output on input
+                    $("#html-output").on("input", function () {
+                        // sync scroll
+                        sync_scroll(this, '#html-editing');
+                    });
+
+                    // event listener for #html-output on scroll
+                    $("#html-output").on("scroll", function () {
+                        // sync scroll
+                        sync_scroll(this, '#html-editing');
+                    });
+
+                    // event listener for #html-output on keyup
+                    $("#html-output").keyup(function () {
+                        // get the html output
+                        var htmlOutput = $("#html-output").val();
+                        // set the html preview
+                        // $("#html-preview").text(htmlOutput);
+                        // update html text editor inputs content
+                        editorUpdate(htmlOutput, "html", "html-editing-highlighting");
+                        // compile prism
+                        Prism.highlightAll();
+                        // update #design-utput with the html output
+                        // $("#design-output").html(htmlOutput);
+                    });
+
+                    $.compilePrismOutputHTML(data);
+                },
+                error: function (err) {
+                    console.error(err);
+                }
+            });
+
+
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <!-- Include Prism JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-markup.min.js"></script> -->
+    <script src="./node_modules/prismjs/prism.js"></script>
+
+</body>
+
+</html>

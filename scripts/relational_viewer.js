@@ -5,6 +5,25 @@ document.addEventListener('DOMContentLoaded', function () {
         fetchTablesData();
     });
 
+    // event listener for menu-btn click
+    document.getElementById("menu-btn").addEventListener("click", function () {
+        console.log("Menu button clicked!");
+
+        // change width of canvas to 100% if menu is hidden, otherwise set it to 100% - offcanvas width
+        if (!document.getElementById("menu-offcanvas").classList.contains("show")) {
+            document.getElementById("canvas").style.width = "100%";
+        } else {
+            // get offcanvas width
+            let offcanvasWidth = document.getElementById("menu-offcanvas").offsetWidth;
+            console.log("Offcanvas width: " + offcanvasWidth);
+            document.getElementById("canvas").style.width = `calc(100% - ${offcanvasWidth}px)`;
+            // set position of canvas to absolute
+            document.getElementById("canvas").style.position = "absolute";
+            // set left position of canvas to offcanvas width
+            document.getElementById("canvas").style.left = `${offcanvasWidth}px`;
+        }
+    });
+
     // event listener for table-search-input input, look for table name in tables-list div
     document.getElementById("table-search-input").addEventListener("input", function () {
         // console.log("Table search input changed!"); // debug
@@ -43,6 +62,18 @@ document.addEventListener('DOMContentLoaded', function () {
         ctx.beginPath();
         ctx.moveTo(x1 + 100, y1 + 50);
         ctx.lineTo(x2 + 100, y2 + 50);
+        ctx.stroke();
+
+        // Draw orange circular markers at the start and end of the line
+        ctx.beginPath();
+        ctx.arc(x1 + 100, y1 + 50, 5, 0, 2 * Math.PI); // 5 is the radius of the circle
+        ctx.fillStyle = 'orange';
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(x2 + 100, y2 + 50, 5, 0, 2 * Math.PI); // 5 is the radius of the circle
+        ctx.fillStyle = 'orange';
+        ctx.fill();
 
         switch (relationshipType) {
             case 'one-to-many':
@@ -329,6 +360,12 @@ document.addEventListener('DOMContentLoaded', function () {
         // ctx.clearRect(0, 0, canvas.width, canvas.height);
         // Call the init function with the tableData
         init(focusTableData);
+
+        // scroll to focused table
+        let focusedTable = document.getElementById("dbtbl-" + tableName);
+        focusedTable.scrollIntoView({ behavior: "smooth", block: "center", inline: "center" });
+
+        // 
 
         /* if (focusTableData) {
             if (tableData && tableData.data) {

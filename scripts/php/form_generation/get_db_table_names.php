@@ -1,4 +1,5 @@
 <?php
+session_start();
 // sources: https://stackoverflow.com/questions/25759056/creating-an-html-form-depending-on-database-fields
 // https://dev.mysql.com/doc/refman/8.0/en/describe.html
 // https://dev.mysql.com/doc/refman/8.0/en/explain.html ***
